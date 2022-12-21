@@ -1,11 +1,15 @@
 package br.com.cbffutebol.campeonatobrasileiro.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Time implements Serializable {
     private static final long SerialVersionUID = 1L;
@@ -22,6 +26,13 @@ public class Time implements Serializable {
 
     @Column(length = 2)
     private String uf;
+
+    public Time(Time entity){
+        this.id = entity.id;
+        this.nome = entity.nome;
+        this.sigla = entity.sigla;
+        this.uf = entity.uf;
+    }
 
 
 }
