@@ -1,11 +1,11 @@
 package br.com.cbffutebol.campeonatobrasileiro.controller;
 
+import br.com.cbffutebol.campeonatobrasileiro.model.dto.ClassificacaoDTO;
+import br.com.cbffutebol.campeonatobrasileiro.model.dto.JogoDTO;
+import br.com.cbffutebol.campeonatobrasileiro.model.dto.JogoFinalizadoDTO;
 import br.com.cbffutebol.campeonatobrasileiro.service.JogoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import br.com.cbffutebol.campeonatobrasileiro.model.Jogo;
@@ -21,7 +21,7 @@ public class JogoController {
     private JogoService jogoService;
 
     @GetMapping
-    public ResponseEntity<List<Jogo>> findAll(){
+    public ResponseEntity<List<JogoDTO>> findAll(){
         return ResponseEntity.ok().body(jogoService.findAll());
     }
 
@@ -31,4 +31,18 @@ public class JogoController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping(value = "/finalizar/{id}")
+    public ResponseEntity<JogoDTO> finalizar(@PathVariable Long id, @RequestBody JogoFinalizadoDTO jogoDTO) throws Exception {
+        return ResponseEntity.ok().body(jogoService.finalizar(id, jogoDTO));
+    }
+
+    @GetMapping(value = "/classificacao")
+    public ResponseEntity<ClassificacaoDTO> classificacao(){
+        return ResponseEntity.ok().body(jogoService.getClassificacao());
+    }
+
+    @GetMapping(value = "/jogo/{id}")
+    public ResponseEntity<JogoDTO> findById(@PathVariable Long id){
+        return ResponseEntity.ok().body(jogoService.findById(id));
+    }
 }
