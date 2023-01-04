@@ -1,5 +1,6 @@
 package br.com.cbffutebol.campeonatobrasileiro.model;
 
+import br.com.cbffutebol.campeonatobrasileiro.model.dto.TimeDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +36,14 @@ public class Time implements Serializable {
         this.sigla = entity.sigla;
         this.uf = entity.uf;
         this.estadio = entity.estadio;
+    }
+
+    public Time(TimeDTO entity){
+        this.id = entity.getId();
+        this.nome = entity.getNome();
+        this.sigla = entity.getSigla();
+        this.uf = entity.getUf();
+        this.estadio = entity.getEstadio();
     }
 
 

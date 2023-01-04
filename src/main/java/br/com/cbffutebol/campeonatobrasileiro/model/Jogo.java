@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -16,6 +17,9 @@ public class Jogo implements Serializable {
     private Integer golsTime1;
     private Integer golsTime2;
     private Integer publicoPagante;
+    private LocalDateTime data;
+    private Integer rodada;
+    private Boolean encerrado;
 
     @ManyToOne
     @JoinColumn(name = "time1")

@@ -15,13 +15,17 @@ public class TimeService {
     @Autowired
     private TimeRepository repository;
 
+    public List<Time> findAll(){
+        return repository.findAll();
+    }
+
     public TimeDTO register(TimeDTO time){
         Time entity = toEntity(time);
         repository.save(entity);
         return new TimeDTO(entity);
     }
 
-    public List<TimeDTO> findAll(){
+    public List<TimeDTO> findAllDTO(){
         return repository.findAll().stream().map(x ->
             new TimeDTO(x)).collect(Collectors.toList());
     }

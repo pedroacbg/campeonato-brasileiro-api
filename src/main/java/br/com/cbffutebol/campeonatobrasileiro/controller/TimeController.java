@@ -4,7 +4,6 @@ import br.com.cbffutebol.campeonatobrasileiro.model.dto.TimeDTO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import br.com.cbffutebol.campeonatobrasileiro.model.Time;
 import org.springframework.http.ResponseEntity;
 import br.com.cbffutebol.campeonatobrasileiro.service.TimeService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -21,7 +20,7 @@ public class TimeController {
 
     @GetMapping
     public ResponseEntity<List<TimeDTO>> findAll(){
-        return ResponseEntity.ok().body(service.findAll());
+        return ResponseEntity.ok().body(service.findAllDTO());
     }
 
     @GetMapping(path = "/{id}")
