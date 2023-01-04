@@ -1,5 +1,6 @@
 package br.com.cbffutebol.campeonatobrasileiro.controller;
 
+import br.com.cbffutebol.campeonatobrasileiro.model.dto.TimeDTO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,21 +20,21 @@ public class TimeController {
     private TimeService service;
 
     @GetMapping
-    public ResponseEntity<List<Time>> findAll(){
+    public ResponseEntity<List<TimeDTO>> findAll(){
         return ResponseEntity.ok().body(service.findAll());
     }
 
     @GetMapping(path = "/{id}")
     @ApiOperation(value = "Obtém os dados de um time")
-    public ResponseEntity<Time> findOne(@PathVariable Long id){
+    public ResponseEntity<TimeDTO> findOne(@PathVariable Long id){
         return ResponseEntity.ok().body(service.findOne(id));
     }
 
     @PostMapping
-    public ResponseEntity<Time> register(@RequestBody Time time){
-        Time newEntity = service.register(time);
+    public ResponseEntity<TimeDTO> register(@RequestBody TimeDTO time){
+        TimeDTO newEntity = service.register(time);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newEntity.getId()).toUri();
-        return ResponseEntity.created(uri).body(service.register(time));
+        return ResponseEntity.created(uri).body(newEntity);
     }
 
 }

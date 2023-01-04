@@ -27,11 +27,14 @@ public class Time implements Serializable {
     @Column(length = 2)
     private String uf;
 
+    private String estadio;
+
     public Time(Time entity){
         this.id = entity.id;
         this.nome = entity.nome;
         this.sigla = entity.sigla;
         this.uf = entity.uf;
+        this.estadio = entity.estadio;
     }
 
 
